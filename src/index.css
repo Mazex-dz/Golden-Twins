@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+    /* Exact Golden Twins Logo Palette */
+    --gt-chocolate: #3A1902;
+    --gt-chocolate-dark: #240F01;
+    --gt-gold-light: #FCE092;
+    --gt-gold: #E5A93C;
+    --gt-gold-deep: #B57316;
+    --gt-cream: #FFFDF8;
+    --gt-sand: #F5E9D6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #FFFDF8;
+    color: #240F01;
+  }
+
+  html[dir='rtl'] {
+    font-family: 'Cairo', system-ui, sans-serif;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  html[dir='rtl'] .font-display {
+    font-family: 'Cairo', system-ui, sans-serif;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-tactile {
+  transition: transform 160ms var(--ease-out), background-color 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+}
+
+.btn-tactile:active {
+  transform: scale(0.97);
+}
+
+/* Concentric Gold Ring treatment inspired by the Golden Twins Emblem */
+.logo-medallion {
+  box-shadow:
+    0 0 0 3px #FFFDF8,
+    0 0 0 5px #E5A93C,
+    0 14px 34px rgba(58, 25, 2, 0.22);
+}
+
+.logo-medallion-lg {
+  box-shadow:
+    0 0 0 4px #FFFDF8,
+    0 0 0 7px #E5A93C,
+    0 0 0 11px rgba(229, 169, 60, 0.22),
+    0 24px 52px rgba(58, 25, 2, 0.28);
+}
+
+/* Smooth marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Fixed subtle paper grain overlay */
+.film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
