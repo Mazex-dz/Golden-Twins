@@ -1408,32 +1408,57 @@ export default function App() {
                       </span>
                     </div>
 
-                    {/* Primary Instagram DM + WhatsApp Checkout Buttons */}
-                    <div className="flex flex-col gap-2">
-                      <button
-                        onClick={handleInstagramOrder}
-                        className="btn-tactile flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] px-5 py-3 text-xs font-extrabold text-white shadow-md transition hover:brightness-105"
-                      >
-                        <Camera className="h-4 w-4" strokeWidth={1.8} />
-                        <span>{t.cart.checkoutInstagram}</span>
-                      </button>
+                    {/* Order Channel Selector: Instagram DM, WhatsApp, or Direct Phone Call */}
+                    <div className="space-y-2">
+                      <span className="block text-[10px] font-bold uppercase tracking-wider text-[#7A4918]">
+                        {lang === 'fr'
+                          ? 'Choisissez comment commander :'
+                          : 'اختر طريقة إرسال الطلب :'}
+                      </span>
 
-                      <div className="flex gap-2">
+                      <div className="grid grid-cols-2 gap-2">
                         <button
-                          onClick={() => setCart([])}
-                          className="btn-tactile flex items-center justify-center gap-1 rounded-full border border-[#E5A93C]/60 px-3.5 py-2.5 text-xs font-bold text-[#573114] hover:bg-[#FAF2E3]"
+                          onClick={handleInstagramOrder}
+                          className="btn-tactile flex items-center justify-center gap-1.5 rounded-full bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#F77737] px-3 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:brightness-105"
                         >
-                          <Trash2 className="h-3.5 w-3.5" strokeWidth={1.6} />
-                          <span>{t.cart.clear}</span>
+                          <Camera className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                          <span>Instagram DM</span>
                         </button>
+
                         <button
                           onClick={handleWhatsAppOrder}
-                          className="btn-tactile flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-2.5 text-xs font-extrabold text-white transition hover:brightness-95"
+                          className="btn-tactile flex items-center justify-center gap-1.5 rounded-full bg-[#25D366] px-3 py-2.5 text-xs font-extrabold text-white shadow-sm transition hover:brightness-95"
                         >
-                          <MessageCircle className="h-4 w-4" strokeWidth={1.7} />
-                          <span>{t.cart.checkoutWhatsapp}</span>
+                          <MessageCircle className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                          <span>WhatsApp</span>
                         </button>
                       </div>
+
+                      {/* Direct Phone Call Buttons */}
+                      <div className="grid grid-cols-2 gap-2">
+                        <a
+                          href={`tel:${BRAND.phone1Raw}`}
+                          className="btn-tactile flex items-center justify-center gap-1.5 rounded-full bg-[#3A1902] px-3 py-2.5 text-xs font-extrabold text-[#FCE092] ring-1 ring-[#E5A93C] hover:bg-[#4F2304]"
+                        >
+                          <Phone className="h-3.5 w-3.5 shrink-0 text-[#E5A93C]" strokeWidth={1.8} />
+                          <span className="tabular-nums">{BRAND.phone1}</span>
+                        </a>
+                        <a
+                          href={`tel:${BRAND.phone2Raw}`}
+                          className="btn-tactile flex items-center justify-center gap-1.5 rounded-full bg-[#3A1902] px-3 py-2.5 text-xs font-extrabold text-[#FCE092] ring-1 ring-[#E5A93C] hover:bg-[#4F2304]"
+                        >
+                          <Phone className="h-3.5 w-3.5 shrink-0 text-[#E5A93C]" strokeWidth={1.8} />
+                          <span className="tabular-nums">{BRAND.phone2}</span>
+                        </a>
+                      </div>
+
+                      <button
+                        onClick={() => setCart([])}
+                        className="btn-tactile flex w-full items-center justify-center gap-1.5 rounded-full border border-[#E5A93C]/50 py-2 text-[11px] font-bold text-[#573114] hover:bg-[#FAF2E3]"
+                      >
+                        <Trash2 className="h-3.5 w-3.5" strokeWidth={1.6} />
+                        <span>{t.cart.clear}</span>
+                      </button>
                     </div>
                   </div>
                 )}
